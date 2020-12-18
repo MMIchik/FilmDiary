@@ -15,7 +15,7 @@ public class View extends JFrame {
 
     private JMenu menuGenres; //2й пункт меню "Жанр"
 
-    private JMenu menuOptions; //3й пункт меню "Опции"
+    private JMenu menuOptions; //3й пункт меню "Действия"
     private JMenuItem menuOptionsItem1; // добавить
     private JMenuItem menuOptionsItem2; // поиск
 
@@ -54,7 +54,7 @@ public class View extends JFrame {
 
         menuGenres = new JMenu("Жанры");
 
-        menuOptions = new JMenu("Опции");
+        menuOptions = new JMenu("Действия");
         menuOptionsItem1 = new JMenuItem("Добавить");
         menuOptionsItem2 = new JMenuItem("Поиск");
     }

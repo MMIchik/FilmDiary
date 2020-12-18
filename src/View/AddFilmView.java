@@ -26,6 +26,14 @@ public class AddFilmView extends JDialog {
         setLocationRelativeTo(owner); // центрируем относительно предшественника
     }
 
+    public JTextField[] getAllTxtFields(){
+        JTextField[] result = new JTextField[3];
+        result[0] = textFieldName;
+        result[1] = textFieldYear;
+        result[2] = textFieldProducer;
+        return result;
+    }
+
     //функция для добавления всех компонентов в панель
     private JPanel addComponents(){
         JPanel mainPanel = new JPanel();

@@ -8,7 +8,7 @@ public class SearchView extends JDialog {
     private JButton button; // ОК
 
     public SearchView(Frame owner) {
-        super(owner, "Поиск", true);
+        super(owner, "Что вы хотите найти?", true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(250, 300);
 
@@ -26,7 +26,6 @@ public class SearchView extends JDialog {
 
     private void init(){
         textFieldName = new JTextField(20);
-        textFieldName.setText("Что хотите найти?");
         button = new JButton("OK");
     }
 

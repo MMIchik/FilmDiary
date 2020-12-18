@@ -9,10 +9,7 @@ import db.DBWorker;
 import javax.swing.*;
 import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -30,10 +27,8 @@ public class Controller {
      //   GroupClass groupClass = new GroupClass(); // создаем объект класса групкласс, чтобы получить список фильмов
         films = GroupClass.updateList();
 
- //       films = groupClass.getFilms(); // записываем полученный список
         // инициализируем модель, записываем в нее этот список фильмов
 
-        System.out.println("fur:");
         for (Film f:
              films) {
             System.out.println(f.toString());
@@ -81,6 +76,30 @@ public class Controller {
         }
     }
 
+    public class CustomListener implements FocusListener {
+        String txt;
+        JTextField textField;
+        String[] defaultTxt = {"Название", "Режиссер", "Год выпуска"};
+
+        public void focusGained(FocusEvent e) {
+            textField = (JTextField) e.getSource();
+            txt = textField.getText();
+
+            for (String el:
+                    defaultTxt) {
+                if (el.equals(txt)){
+                    textField.setText("");
+                    break;
+                }
+            }
+        }
+
+        public void focusLost(FocusEvent e) {
+            if (textField.getText().equals("")){
+                textField.setText(txt);
+            }
+        }
+    }
     // Слушатель для пункта меню "Поиск"
     public class SearchListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
@@ -103,9 +122,9 @@ public class Controller {
                     for (Film el:
                          films) {
                         // если фильм содержит в названии/режиссере/году search
-                        if (el.getName().contains(search)
-                                || String.valueOf(el.getYear()).contains(search)
-                                || el.getProducer().contains(search))
+                        if (el.getName().toLowerCase().contains(search.toLowerCase())
+                                || String.valueOf(el.getYear()).toLowerCase().contains(search.toLowerCase())
+                                || el.getProducer().toLowerCase().contains(search.toLowerCase()))
                             resultOfSearch.add(el); // то добавляем в результирующий список
                     }
 
@@ -127,6 +146,13 @@ public class Controller {
     public class AddListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             AddFilmView addView = new AddFilmView(view); // открываем модульное окно для добавления
+            // добавляем для каждого текстфиелда
+            for (JTextField item: //проходим по каждому пункту меню
+                    addView.getAllTxtFields()) {
+                item.addFocusListener(new CustomListener());
+                System.out.println("YEAH");
+            }
+
             //Обработка нажатия кнопки
             JButton button = addView.getButton();
             button.addActionListener(new ActionListener() {
