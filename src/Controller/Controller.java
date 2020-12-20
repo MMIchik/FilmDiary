@@ -76,6 +76,7 @@ public class Controller {
         }
     }
 
+    // листенер слушает фокусы для текстфилдов
     public class CustomListener implements FocusListener {
         String txt;
         JTextField textField;

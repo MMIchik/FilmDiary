@@ -13,26 +13,13 @@ public class Film {
     private int id;
 
     private String name; //название
-    private Genre genre; //жанр //FIXME
     private int genre_id;
     private String producer; //режиссер
     private int year; //год выхода
-
     private boolean favorites; // избранное
     private boolean viewed; // просмотренный
     private boolean desired; //желаемое
 
-    //конструктор
-    /*public Film(String name, Genre genre, String producer, int year,
-                boolean favorites, boolean viewed, boolean desired) {
-        this.name = name;
-        this.genre = genre;
-        this.producer = producer;
-        this.year = year;
-        this.favorites = favorites;
-        this.viewed = viewed;
-        this.desired = desired;
-    }*/
 
     public Film(int id, String name, int genre_id, String producer, int year,
                 boolean favorites, boolean viewed, boolean desired) {
@@ -76,9 +63,6 @@ public class Film {
         return name;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
 
     public String getProducer() {
         return producer;
